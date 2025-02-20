@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: foodstore
+server:
+  port: 8081
