@@ -1,31 +1,22 @@
 package food_store.example.foodstore.controller;
 
-import ch.qos.logback.core.model.Model;
 import food_store.example.foodstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProductController {
+public class AdminController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/products")
-    public String getProductsList(Model model) {
-        return "products";
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/admin")
+    public String getAdminPage(Model model) {
+        return "admin";
     }
-
-    @GetMapping("/products")
-    public String getProductsPage(Model model) {
-
-
-        return "products";
-    }
-
-
-
 }
