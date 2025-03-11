@@ -1,6 +1,7 @@
 package food_store.example.foodstore.model;
 
 
+import food_store.example.foodstore.constant.ProviderEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,10 @@ public class User {
     private String fullname;
     private String address;
     private String urlImage;
+    private String code;
+    @Column(name = "provider")
+    @Enumerated(EnumType.STRING)
+    private ProviderEnum provider;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

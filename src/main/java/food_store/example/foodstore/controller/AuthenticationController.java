@@ -1,15 +1,12 @@
 package food_store.example.foodstore.controller;
 
 import food_store.example.foodstore.dto.UserLogin;
-import food_store.example.foodstore.model.Permission;
-import food_store.example.foodstore.model.Role;
 import food_store.example.foodstore.model.User;
 import food_store.example.foodstore.service.PermissionService;
 import food_store.example.foodstore.service.RoleService;
 import food_store.example.foodstore.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthenticationController {
@@ -48,6 +44,7 @@ public class AuthenticationController {
         User user = User.builder()
                 .email(userLogin.getEmail())
                 .password(passwordEncoder.encode(userLogin.getPassword()))
+                .code(userService.generateCode())
                 .urlImage(urlImage)
                 .role(roleService.findRoleByName("USER"))
                 .build();
@@ -73,6 +70,8 @@ public class AuthenticationController {
     public String logout() {
         return "logout";
     }
+
+
 
 
 

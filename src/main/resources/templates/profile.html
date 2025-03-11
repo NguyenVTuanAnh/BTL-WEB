@@ -76,14 +76,16 @@
                             <img th:src="@{${user.urlImage}}"
                                  style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; cursor: pointer; aspect-ratio: 1/1;"
                                  alt="avatar" class="rounded-circle img-fluid"
-                                 data-bs-toggle="modal" data-bs-target="#uploadModal">
+                                 ata-bs-toggle="modal" data-bs-target="#uploadModal">
+
+
                         </div>
 
-<!--                        <div th:unless="${user.urlImage}">-->
-<!--                            <img src="https://preview.redd.it/how-would-your-avatar-win-or-lose-against-gojo-v0-8pe5abo1hgtd1.jpeg?width=640&crop=smart&auto=webp&s=a08ff3a894b6f73ea7596acc11aaa7a7608235ec"-->
-<!--                                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px; cursor: pointer;"-->
-<!--                                 data-bs-toggle="modal" data-bs-target="#uploadModal">-->
-<!--                        </div>-->
+                        <div th:unless="${user.urlImage}">
+                            <img src="https://preview.redd.it/how-would-your-avatar-win-or-lose-against-gojo-v0-8pe5abo1hgtd1.jpeg?width=640&crop=smart&auto=webp&s=a08ff3a894b6f73ea7596acc11aaa7a7608235ec"
+                                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px; cursor: pointer;"
+                                 data-bs-toggle="modal" data-bs-target="#uploadModal">
+                        </div>
 
                         <h5 class="my-3"><span th:text="${user.fullname}"></span></h5>
                         <p class="text-muted mb-1"><span th:text="${user.email}"></span></p>

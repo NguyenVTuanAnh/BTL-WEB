@@ -244,6 +244,26 @@
     <!--end modal navbar-->
 
 
+    <!--modal alert error authentication-->
+    <div th:if="${param.error}" id="loginErrorModal" class="modal fade show" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lỗi đăng nhập</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal alert error authentication-->
 
 
     <header >
@@ -327,16 +347,20 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style="min-width: 250px; padding: 10px;">
                                 <div sec:authorize="isAuthenticated()">
                                     <li class="dropdown-header text-center">
-                                        <div th:if="${#authentication.principal.urlImage}">
+                                        <div th:if="${#authentication.principal.urlImage}" style="margin-top: 25px; margin-bottom: 25px">
                                             <img th:src="@{${#authentication.principal.urlImage}}" alt="Avatar" class="rounded-circle" width="64" height="64">
                                         </div>
-
+<!--                                        <div >-->
+<!--                                            <p class="mt-2 mb-0 fw-bold"><span sec:authentication="principal.fullname"></span></p>-->
+<!--                                        </div>-->
                                         <div >
-                                            <p class="mt-2 mb-0 fw-bold"><span sec:authentication="name"></span></p>
+                                            <span class="mt-2 mb-0 fw-bold" sec:authentication="principal.email"></span>
                                         </div>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a th:href="@{/profile}"  class="dropdown-item"><b>Edit Profile</b> <span></span></a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a th:href="@{/password-change}"  class="dropdown-item"><b>Password</b> <span></span></a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li ><form th:action="@{/logout}" method="post">
                                         <button type="submit" class="btn btn-outline-danger "style="margin-left: 13px">Logout</button>

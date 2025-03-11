@@ -175,5 +175,14 @@
                 reader.readAsDataURL(file); // Đọc file dưới dạng DataURL
             }
         });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.search.includes("error")) {
+                var myModal = new bootstrap.Modal(document.getElementById("loginErrorModal"));
+                myModal.show();
+            }
+        });
     </script>
 </div>

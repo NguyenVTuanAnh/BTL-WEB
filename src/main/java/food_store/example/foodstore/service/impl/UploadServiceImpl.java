@@ -37,5 +37,8 @@ public class UploadServiceImpl implements UploadService {
             user.setUrlImage(urlImage);
             userService.updateUser(user);
         }
+
     }
+
+
 }

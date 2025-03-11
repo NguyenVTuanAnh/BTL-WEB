@@ -1,13 +1,11 @@
 package food_store.example.foodstore.controller;
 
-import ch.qos.logback.core.model.Model;
+import food_store.example.foodstore.dto.UserLogin;
 import food_store.example.foodstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomePageController {
@@ -16,9 +14,8 @@ public class HomePageController {
     private UserService userService;
 
     @GetMapping("/home")
-    public String home(Model model) {
-
-
+    public String getHomePage(Model model) {
+        model.addAttribute("user", new UserLogin());
         return "index";
     }
 
@@ -28,5 +25,10 @@ public class HomePageController {
     @GetMapping("/checkout")
     public String checkout() {
         return "checkout";
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        return "email-template";
     }
 }

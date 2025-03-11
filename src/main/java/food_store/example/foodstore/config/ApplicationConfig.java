@@ -1,5 +1,6 @@
 package food_store.example.foodstore.config;
 
+import food_store.example.foodstore.constant.ProviderEnum;
 import food_store.example.foodstore.model.Permission;
 import food_store.example.foodstore.model.Role;
 import food_store.example.foodstore.model.User;
@@ -53,6 +54,9 @@ public class ApplicationConfig {
                 User admin = User.builder()
                         .email("admin@gmail.com")
                         .password(passwordEncoder.encode("123456"))
+                        .code(userService.generateCode())
+                        .provider(ProviderEnum.LOCAL)
+                        .urlImage("/uploads/anonymous.jpg")
                         .role(adminRole)
                         .build();
 
@@ -76,6 +80,9 @@ public class ApplicationConfig {
                 User admin = User.builder()
                         .email("user@gmail.com")
                         .password(passwordEncoder.encode("123456"))
+                        .code(userService.generateCode())
+                        .urlImage("/uploads/anonymous.jpg")
+                        .provider(ProviderEnum.LOCAL)
                         .role(role)
                         .build();
 

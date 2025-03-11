@@ -22,8 +22,12 @@ public class CustomUserDetail implements UserDetails {
     public String getUrlImage() { // Thêm getter này
         return user.getUrlImage();
     }
-
-
+    public String getFullname(){
+        return user.getFullname();
+    }
+    public String getEmail() {
+        return user.getEmail();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

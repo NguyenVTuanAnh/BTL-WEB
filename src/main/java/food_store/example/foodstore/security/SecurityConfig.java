@@ -1,8 +1,11 @@
 package food_store.example.foodstore.security;
 
+import food_store.example.foodstore.security.oauth2.CustomOAuth2AuthenticationSuccess;
+import food_store.example.foodstore.security.oauth2.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,6 +26,10 @@ public class SecurityConfig {
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
+
+    @Autowired
+    private CustomOAuth2AuthenticationSuccess customOAuth2AuthenticationSuccess;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -34,14 +41,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register", "/login","/logout-success").permitAll()
-                        .requestMatchers("/home","/products","/").permitAll()
+                        .requestMatchers("/register", "/login","/logout-success","/oauth2/**").permitAll()
+                        .requestMatchers("/home","/products","/email","/waiting-email","/change-password","/password-forgot").permitAll()
                         .requestMatchers( "/css/**", "/js/**", "/images/**","/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
+                        .failureUrl("/login?error")
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .successHandler(loginSuccessHandler)
@@ -60,8 +68,19 @@ public class SecurityConfig {
                         .maximumSessions(1) // ✅ Mỗi user chỉ có 1 session
                         .maxSessionsPreventsLogin(false) // ✅ Nếu user đăng nhập mới, session cũ bị xóa
                 )
+                .oauth2Login(auth -> auth
+                        .loginPage("/login")
+                        .userInfoEndpoint(userInfor ->
+                                userInfor.userService(new CustomOAuth2UserService())   // đăng ký CustomOAuth2UserService
+                        )
+                        .successHandler(customOAuth2AuthenticationSuccess)
+                        .permitAll()
+                )
                 ;
         return http.build();
     }
+
+
+
 
 }

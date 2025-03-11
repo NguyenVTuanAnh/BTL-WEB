@@ -36,10 +36,42 @@
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                      class="img-fluid" alt="Sample image">
             </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" >
                 <form th:action="@{/login}" method="post" th:object="${userLogin}">
-                     <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0">Login</p>
+
+                    <div class="d-flex align-items-center" style="margin-bottom: 30px; margin-top: 40px">
+                        <p class="lead fw-normal mb-0 me-3">Login in with</p>
+
+                        <!-- Facebook -->
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <a th:href="@{/oauth2/authorization/facebook}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                                    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495V14.706h-3.129v-3.623h3.129V8.413c0-3.1 1.892-4.788 4.656-4.788 1.324 0 2.464.099 2.794.143v3.24l-1.917.001c-1.504 0-1.794.714-1.794 1.763v2.31h3.588l-.468 3.623h-3.12V24h6.115c.732 0 1.325-.593 1.325-1.324V1.325C24 .593 23.407 0 22.675 0z"/>
+                                </svg>
+                            </a>
+                        </button>
+
+                        <!-- Google -->
+                        <button type="button" class="btn btn-danger btn-floating mx-1">
+                            <a th:href="@{/oauth2/authorization/google}" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+                                    <path fill="#4285F4" d="M44.5 20H24v8.5h11.9C34.5 34 30 38 24 38c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 8 3l6-6C34.5 6.1 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c10.3 0 19.3-7.5 19.9-18.1 0-.7.1-1.4.1-1.9z"/>
+                                </svg>
+                            </a>
+                        </button>
+
+                        <!-- GitHub -->
+                        <button type="button" class="btn btn-dark btn-floating mx-1">
+                            <a th:href="@{/oauth2/authorization/github}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                                    <path d="M12 .296C5.373.296 0 5.67 0 12.296c0 5.291 3.438 9.8 8.207 11.387.6.111.793-.26.793-.577v-2.255c-3.338.726-4.033-1.416-4.033-1.416-.547-1.395-1.334-1.766-1.334-1.766-1.091-.745.082-.729.082-.729 1.207.085 1.842 1.24 1.842 1.24 1.07 1.835 2.807 1.306 3.492.998.108-.776.418-1.305.762-1.604-2.665-.304-5.467-1.332-5.467-5.926 0-1.31.465-2.382 1.236-3.221-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.231a11.528 11.528 0 013.008-.404c1.021.005 2.047.137 3.008.404 2.293-1.553 3.301-1.231 3.301-1.231.652 1.652.24 2.873.117 3.176.773.839 1.236 1.911 1.236 3.221 0 4.606-2.807 5.619-5.479 5.914.43.371.823 1.102.823 2.222v3.293c0 .32.192.694.801.576 4.769-1.589 8.207-6.097 8.207-11.387 0-6.626-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+
+                        </button>
+                    </div>
+                    <div class="divider d-flex align-items-center my-4" style="margin-bottom: 30px">
+                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
                     </div>
 
                     <!-- Email input -->
@@ -64,7 +96,7 @@
                                 Remember me
                             </label>
                         </div>
-                        <a href="#!" class="text-body">Forgot password?</a>
+                        <a th:href="@{/password-forgot}" class="text-body">Forgot password?</a>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
@@ -78,6 +110,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

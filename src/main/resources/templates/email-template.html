@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <style>
+        body{margin-top:20px;}
+        .mail-seccess {
+            text-align: center;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+        .mail-seccess .success-inner {
+            display: inline-block;
+        }
+        .mail-seccess .success-inner h1 {
+            font-size: 100px;
+            text-shadow: 3px 5px 2px #3333;
+            color: #006DFE;
+            font-weight: 700;
+        }
+        .mail-seccess .success-inner h1 span {
+            display: block;
+            font-size: 25px;
+            color: #333;
+            font-weight: 600;
+            text-shadow: none;
+            margin-top: 20px;
+        }
+        .mail-seccess .success-inner p {
+            padding: 20px 15px;
+        }
+        .mail-seccess .success-inner .btn{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <link th:href="@{'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'}" rel="stylesheet" />
+    <section class="mail-seccess section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+                    <!-- Error Inner -->
+                    <form th:action="@{'http://localhost:8081/change-password'}" method="post">
+                        <div class="success-inner">
+                            <h1>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                </svg>
+                                <span>Verify Email</span>
+                            </h1>
+                            <p>code to change password: <span th:text="${code}"></span></p>
+
+                        </div>
+                    </form>
+
+                    <!--/ End Error Inner -->
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
